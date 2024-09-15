@@ -1,19 +1,14 @@
-{{-- Pterodactyl - Panel --}}
-{{-- Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com> --}}
-
-{{-- This software is licensed under the terms of the MIT license. --}}
-{{-- https://opensource.org/licenses/MIT --}}
 @extends('layouts.admin')
 
 @section('title')
-    Список серверов
+    List Servers
 @endsection
 
 @section('content-header')
-    <h1>Все сервера<small> в этой системе.</small></h1>
+    <h1>Servers<small>All servers available on the system.</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Администрация</a></li>
-        <li class="active">Сервера</li>
+        <li><a href="{{ route('admin.index') }}">Admin</a></li>
+        <li class="active">Servers</li>
     </ol>
 @endsection
 
@@ -22,14 +17,14 @@
     <div class="col-xs-12">
         <div class="box box-primary">
             <div class="box-header with-border">
-                <h3 class="box-title">Список серверов</h3>
+                <h3 class="box-title">Server List</h3>
                 <div class="box-tools search01">
                     <form action="{{ route('admin.servers') }}" method="GET">
                         <div class="input-group input-group-sm">
-                            <input type="text" name="filter[*]" class="form-control pull-right" value="{{ request()->input()['filter']['*'] ?? '' }}" placeholder="Поиск серверов">
+                            <input type="text" name="filter[*]" class="form-control pull-right" value="{{ request()->input()['filter']['*'] ?? '' }}" placeholder="Search Servers">
                             <div class="input-group-btn">
                                 <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
-                                <a href="{{ route('admin.servers.new') }}"><button type="button" class="btn btn-sm btn-primary" style="border-radius: 0 3px 3px 0;margin-left:-1px;">Создание сервера</button></a>
+                                <a href="{{ route('admin.servers.new') }}"><button type="button" class="btn btn-sm btn-primary" style="border-radius: 0 3px 3px 0;margin-left:-1px;">Create New</button></a>
                             </div>
                         </div>
                     </form>
@@ -39,11 +34,11 @@
                 <table class="table table-hover">
                     <tbody>
                         <tr>
-                            <th>Имя сервера</th>
+                            <th>Server Name</th>
                             <th>UUID</th>
-                            <th>Владелец</th>
-                            <th>Нода</th>
-                            <th>Соединение с сервером</th>
+                            <th>Owner</th>
+                            <th>Node</th>
+                            <th>Connection</th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -58,11 +53,11 @@
                                 </td>
                                 <td class="text-center">
                                     @if($server->isSuspended())
-                                        <span class="label bg-maroon">Остановленый</span>
+                                        <span class="label bg-maroon">Suspended</span>
                                     @elseif(! $server->isInstalled())
-                                        <span class="label label-warning">Установка</span>
+                                        <span class="label label-warning">Installing</span>
                                     @else
-                                        <span class="label label-success">Активный</span>
+                                        <span class="label label-success">Active</span>
                                     @endif
                                 </td>
                                 <td class="text-center">

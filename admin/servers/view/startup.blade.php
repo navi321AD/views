@@ -1,8 +1,3 @@
-{{-- Pterodactyl - Panel --}}
-{{-- Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com> --}}
-
-{{-- This software is licensed under the terms of the MIT license. --}}
-{{-- https://opensource.org/licenses/MIT --}}
 @extends('layouts.admin')
 
 @section('title')
@@ -112,21 +107,27 @@
     @parent
     {!! Theme::js('vendor/lodash/lodash.js') !!}
     <script>
+    function escapeHtml(str) {
+        var div = document.createElement('div');
+        div.appendChild(document.createTextNode(str));
+        return div.innerHTML;
+    }
+
     $(document).ready(function () {
         $('#pEggId').select2({placeholder: 'Select a Nest Egg'}).on('change', function () {
             var selectedEgg = _.isNull($(this).val()) ? $(this).find('option').first().val() : $(this).val();
             var parentChain = _.get(Pterodactyl.nests, $("#pNestId").val());
             var objectChain = _.get(parentChain, 'eggs.' + selectedEgg);
 
-            $('#setDefaultImage').html(_.get(objectChain, 'docker_images.0', 'undefined'));
             const images = _.get(objectChain, 'docker_images', [])
             $('#pDockerImage').html('');
-            for (let i = 0; i < images.length; i++) {
+            const keys = Object.keys(images);
+            for (let i = 0; i < keys.length; i++) {
                 let opt = document.createElement('option');
-                opt.value = images[i];
-                opt.innerHTML = images[i];
+                opt.value = images[keys[i]];
+                opt.innerText = keys[i] + " (" + images[keys[i]] + ")";
                 if (objectChain.id === parseInt(Pterodactyl.server.egg_id) && Pterodactyl.server.image == opt.value) {
-                    opt.checked = true
+                    opt.selected = true
                 }
                 $('#pDockerImage').append(opt);
             }
@@ -154,15 +155,15 @@
                     <div class="col-xs-12"> \
                         <div class="box"> \
                             <div class="box-header with-border"> \
-                                <h3 class="box-title">' + isRequired + item.name + '</h3> \
+                                <h3 class="box-title">' + isRequired + escapeHtml(item.name) + '</h3> \
                             </div> \
                             <div class="box-body"> \
-                                <input name="environment[' + item.env_variable + ']" class="form-control" type="text" id="egg_variable_' + item.env_variable + '" /> \
-                                <p class="no-margin small text-muted">' + item.description + '</p> \
+                                <input name="environment[' + escapeHtml(item.env_variable) + ']" class="form-control" type="text" id="egg_variable_' + escapeHtml(item.env_variable) + '" /> \
+                                <p class="no-margin small text-muted">' + escapeHtml(item.description) + '</p> \
                             </div> \
                             <div class="box-footer"> \
-                                <p class="no-margin text-muted small"><strong>Startup Command Variable:</strong> <code>' + item.env_variable + '</code></p> \
-                                <p class="no-margin text-muted small"><strong>Input Rules:</strong> <code>' + item.rules + '</code></p> \
+                                <p class="no-margin text-muted small"><strong>Startup Command Variable:</strong> <code>' + escapeHtml(item.env_variable) + '</code></p> \
+                                <p class="no-margin text-muted small"><strong>Input Rules:</strong> <code>' + escapeHtml(item.rules) + '</code></p> \
                             </div> \
                         </div> \
                     </div>';

@@ -1,20 +1,14 @@
-{{-- Pterodactyl - Panel --}}
-{{-- Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com> --}}
-
-{{-- This software is licensed under the terms of the MIT license. --}}
-{{-- https://opensource.org/licenses/MIT --}}
-
 @extends('layouts.admin')
 
 @section('title')
-    Mounts &rarr; View &rarr; {{ $mount->id }}
+    Монтирования &rarr; Просмотр &rarr; {{ $mount->id }}
 @endsection
 
 @section('content-header')
     <h1>{{ $mount->name }}<small>{{ str_limit($mount->description, 75) }}</small></h1>
     <ol class="breadcrumb">
-        <li><a href="{{ route('admin.index') }}">Admin</a></li>
-        <li><a href="{{ route('admin.mounts') }}">Mounts</a></li>
+        <li><a href="{{ route('admin.index') }}">Админ</a></li>
+        <li><a href="{{ route('admin.mounts') }}">Монтирования</a></li>
         <li class="active">{{ $mount->name }}</li>
     </ol>
 @endsection
@@ -24,67 +18,67 @@
         <div class="col-sm-6">
             <div class="box box-primary">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Mount Details</h3>
+                    <h3 class="box-title">Детали монтирования</h3>
                 </div>
 
                 <form action="{{ route('admin.mounts.view', $mount->id) }}" method="POST">
                     <div class="box-body">
                         <div class="form-group">
-                            <label for="PUniqueID" class="form-label">Unique ID</label>
+                            <label for="PUniqueID" class="form-label">Уникальный ID</label>
                             <input type="text" id="PUniqueID" class="form-control" value="{{ $mount->uuid }}" disabled />
                         </div>
 
                         <div class="form-group">
-                            <label for="pName" class="form-label">Name</label>
+                            <label for="pName" class="form-label">Название</label>
                             <input type="text" id="pName" name="name" class="form-control" value="{{ $mount->name }}" />
                         </div>
 
                         <div class="form-group">
-                            <label for="pDescription" class="form-label">Description</label>
+                            <label for="pDescription" class="form-label">Описание</label>
                             <textarea id="pDescription" name="description" class="form-control" rows="4">{{ $mount->description }}</textarea>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label for="pSource" class="form-label">Source</label>
+                                <label for="pSource" class="form-label">Источник</label>
                                 <input type="text" id="pSource" name="source" class="form-control" value="{{ $mount->source }}" />
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label for="pTarget" class="form-label">Target</label>
+                                <label for="pTarget" class="form-label">Цель</label>
                                 <input type="text" id="pTarget" name="target" class="form-control" value="{{ $mount->target }}" />
                             </div>
                         </div>
 
                         <div class="row">
                             <div class="form-group col-md-6">
-                                <label class="form-label">Read Only</label>
+                                <label class="form-label">Только для чтения</label>
 
                                 <div>
                                     <div class="radio radio-success radio-inline">
                                         <input type="radio" id="pReadOnlyFalse" name="read_only" value="0" @if(!$mount->read_only) checked @endif>
-                                        <label for="pReadOnlyFalse">False</label>
+                                        <label for="pReadOnlyFalse">Нет</label>
                                     </div>
 
                                     <div class="radio radio-warning radio-inline">
                                         <input type="radio" id="pReadOnly" name="read_only" value="1" @if($mount->read_only) checked @endif>
-                                        <label for="pReadOnly">True</label>
+                                        <label for="pReadOnly">Да</label>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="form-group col-md-6">
-                                <label class="form-label">User Mountable</label>
+                                <label class="form-label">Доступно пользователю</label>
 
                                 <div>
                                     <div class="radio radio-success radio-inline">
                                         <input type="radio" id="pUserMountableFalse" name="user_mountable" value="0" @if(!$mount->user_mountable) checked @endif>
-                                        <label for="pUserMountableFalse">False</label>
+                                        <label for="pUserMountableFalse">Нет</label>
                                     </div>
 
                                     <div class="radio radio-warning radio-inline">
                                         <input type="radio" id="pUserMountable" name="user_mountable" value="1" @if($mount->user_mountable) checked @endif>
-                                        <label for="pUserMountable">True</label>
+                                        <label for="pUserMountable">Да</label>
                                     </div>
                                 </div>
                             </div>
@@ -95,7 +89,7 @@
                         {!! csrf_field() !!}
                         {!! method_field('PATCH') !!}
 
-                        <button name="action" value="edit" class="btn btn-sm btn-primary pull-right">Save</button>
+                        <button name="action" value="edit" class="btn btn-sm btn-primary pull-right">Сохранить</button>
                         <button name="action" value="delete" class="btn btn-sm btn-danger pull-left muted muted-hover"><i class="fa fa-trash-o"></i></button>
                     </div>
                 </form>
@@ -105,10 +99,10 @@
         <div class="col-sm-6">
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Eggs</h3>
+                    <h3 class="box-title">Яйца</h3>
 
                     <div class="box-tools">
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addEggsModal">Add Eggs</button>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addEggsModal">Добавить яйца</button>
                     </div>
                 </div>
 
@@ -116,7 +110,7 @@
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Название</th>
                             <th></th>
                         </tr>
 
@@ -135,10 +129,10 @@
 
             <div class="box">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Nodes</h3>
+                    <h3 class="box-title">Узлы</h3>
 
                     <div class="box-tools">
-                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNodesModal">Add Nodes</button>
+                        <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#addNodesModal">Добавить узлы</button>
                     </div>
                 </div>
 
@@ -146,7 +140,7 @@
                     <table class="table table-hover">
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Название</th>
                             <th>FQDN</th>
                             <th></th>
                         </tr>
@@ -176,13 +170,13 @@
                             <span aria-hidden="true" style="color: #FFFFFF">&times;</span>
                         </button>
 
-                        <h4 class="modal-title">Add Eggs</h4>
+                        <h4 class="modal-title">Добавить яйца</h4>
                     </div>
 
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="pEggs">Eggs</label>
+                                <label for="pEggs">Яйца</label>
                                 <select id="pEggs" name="eggs[]" class="form-control" multiple>
                                     @foreach ($nests as $nest)
                                         <optgroup label="{{ $nest->name }}">
@@ -203,8 +197,8 @@
                     <div class="modal-footer">
                         {!! csrf_field() !!}
 
-                        <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                        <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
                     </div>
                 </form>
             </div>
@@ -220,20 +214,20 @@
                             <span aria-hidden="true" style="color: #FFFFFF">&times;</span>
                         </button>
 
-                        <h4 class="modal-title">Add Nodes</h4>
+                        <h4 class="modal-title">Добавить узлы</h4>
                     </div>
 
                     <div class="modal-body">
                         <div class="row">
                             <div class="form-group col-md-12">
-                                <label for="pNodes">Nodes</label>
+                                <label for="pNodes">Узлы</label>
                                 <select id="pNodes" name="nodes[]" class="form-control" multiple>
-                                    @foreach ($locations as $location)
-                                        <optgroup label="{{ $location->long }} ({{ $location->short }})">
-                                            @foreach ($location->nodes as $node)
+                                    @foreach ($clusters as $cluster)
+                                        <optgroup label="{{ $cluster->name }}">
+                                            @foreach ($cluster->nodes as $node)
 
                                                 @if (! in_array($node->id, $mount->nodes->pluck('id')->toArray()))
-                                                    <option value="{{ $node->id }}">{{ $node->name }}</option>
+                                                    <option value="{{ $node->id }}">{{ $node->name }} ({{ $node->fqdn }})</option>
                                                 @endif
 
                                             @endforeach
@@ -247,73 +241,11 @@
                     <div class="modal-footer">
                         {!! csrf_field() !!}
 
-                        <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Cancel</button>
-                        <button type="submit" class="btn btn-primary btn-sm">Add</button>
+                        <button type="button" class="btn btn-default btn-sm pull-left" data-dismiss="modal">Отмена</button>
+                        <button type="submit" class="btn btn-primary btn-sm">Добавить</button>
                     </div>
                 </form>
             </div>
         </div>
     </div>
-@endsection
-
-@section('footer-scripts')
-    @parent
-
-    <script>
-        $(document).ready(function() {
-            $('#pEggs').select2({
-                placeholder: 'Select eggs..',
-            });
-
-            $('#pNodes').select2({
-                placeholder: 'Select nodes..',
-            });
-
-            $('button[data-action="detach-egg"]').click(function (event) {
-                event.preventDefault();
-
-                const element = $(this);
-                const eggId = $(this).data('id');
-
-                $.ajax({
-                    method: 'DELETE',
-                    url: '/admin/mounts/' + {{ $mount->id }} + '/eggs/' + eggId,
-                    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                }).done(function () {
-                    element.parent().parent().addClass('warning').delay(100).fadeOut();
-                    swal({ type: 'success', title: 'Egg detached.' });
-                }).fail(function (jqXHR) {
-                    console.error(jqXHR);
-                    swal({
-                        title: 'Whoops!',
-                        text: jqXHR.responseJSON.error,
-                        type: 'error'
-                    });
-                });
-            });
-
-            $('button[data-action="detach-node"]').click(function (event) {
-                event.preventDefault();
-
-                const element = $(this);
-                const nodeId = $(this).data('id');
-
-                $.ajax({
-                    method: 'DELETE',
-                    url: '/admin/mounts/' + {{ $mount->id }} + '/nodes/' + nodeId,
-                    headers: { 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content') },
-                }).done(function () {
-                    element.parent().parent().addClass('warning').delay(100).fadeOut();
-                    swal({ type: 'success', title: 'Node detached.' });
-                }).fail(function (jqXHR) {
-                    console.error(jqXHR);
-                    swal({
-                        title: 'Whoops!',
-                        text: jqXHR.responseJSON.error,
-                        type: 'error'
-                    });
-                });
-            });
-        });
-    </script>
 @endsection
