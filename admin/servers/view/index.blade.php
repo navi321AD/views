@@ -1,3 +1,8 @@
+{{-- Pterodactyl - Panel --}}
+{{-- Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com> --}}
+
+{{-- This software is licensed under the terms of the MIT license. --}}
+{{-- https://opensource.org/licenses/MIT --}}
 @extends('layouts.admin')
 
 @section('title')
@@ -78,7 +83,7 @@
                                     @if($server->memory === 0)
                                         <code>Unlimited</code>
                                     @else
-                                        <code>{{ $server->memory }}MiB</code>
+                                        <code>{{ $server->memory }}MB</code>
                                     @endif
                                     /
                                     @if($server->swap === 0)
@@ -86,7 +91,7 @@
                                     @elseif($server->swap === -1)
                                         <code data-toggle="tooltip" data-placement="top" title="Swap Space">Unlimited</code>
                                     @else
-                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space"> {{ $server->swap }}MiB</code>
+                                        <code data-toggle="tooltip" data-placement="top" title="Swap Space"> {{ $server->swap }}MB</code>
                                     @endif
                                 </td>
                             </tr>
@@ -96,7 +101,7 @@
                                     @if($server->disk === 0)
                                         <code>Unlimited</code>
                                     @else
-                                        <code>{{ $server->disk }}MiB</code>
+                                        <code>{{ $server->disk }}MB</code>
                                     @endif
                                 </td>
                             </tr>

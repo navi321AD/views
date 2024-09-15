@@ -1,3 +1,8 @@
+{{-- Pterodactyl - Panel --}}
+{{-- Copyright (c) 2015 - 2017 Dane Everitt <dane@daneeveritt.com> --}}
+
+{{-- This software is licensed under the terms of the MIT license. --}}
+{{-- https://opensource.org/licenses/MIT --}}
 @extends('layouts.admin')
 
 @section('title')
@@ -72,7 +77,7 @@
             $('#deleteform').submit()
         });
     });
-
+	
     $('#forcedeletebtn').click(function (event) {
         event.preventDefault();
         swal({
