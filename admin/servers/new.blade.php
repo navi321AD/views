@@ -151,7 +151,28 @@
                         <label for="pCPU">Лимит ЦПУ</label>
 
                         <div class="input-group">
-                            <input type="text" id="pCPU" name="cpu" class="form-control" value="{{ old('cpu', 0) }}" />
+                            <select id="pCPU" name="cpu" class="form-control">
+                                <option value="0">Без ограничений</option>
+                                <option value="10">10%</option>
+                                <option value="20">20%</option>
+                                <option value="30">30%</option>
+                                <option value="40">40%</option>
+                                <option value="50">50%</option>
+                                <option value="60">60%</option>
+                                <option value="70">70%</option>
+                                <option value="80">80%</option>
+                                <option value="90">90%</option>
+                                <option value="100">100%</option>
+                                <option value="200">200%</option>
+                                <option value="300">300%</option>
+                                <option value="400">400%</option>
+                                <option value="500">500%</option>
+                                <option value="600">600%</option>
+                                <option value="700">700%</option>
+                                <option value="800">800%</option>
+                                <option value="900">900%</option>
+                                <option value="1000">1000%</option>
+                            </select>
                             <span class="input-group-addon">%</span>
                         </div>
 
@@ -178,9 +199,21 @@
                                 <option value="512">512 МБ</option>
                                 <option value="1024">1 ГБ</option>
                                 <option value="2048">2 ГБ</option>
+                                <option value="3072">3 ГБ</option>
                                 <option value="4096">4 ГБ</option>
+                                <option value="5120">5 ГБ</option>
+                                <option value="6144">6 ГБ</option>
+                                <option value="7168">7 ГБ</option>
                                 <option value="8192">8 ГБ</option>
+                                <option value="9216">9 ГБ</option>
+                                <option value="10240">10 ГБ</option>
+                                <option value="11264">11 ГБ</option>
+                                <option value="12288">12 ГБ</option>
+                                <option value="13312">13 ГБ</option>
+                                <option value="14336">14 ГБ</option>
+                                <option value="15360">15 ГБ</option>
                                 <option value="16384">16 ГБ</option>
+                                
                                 <option value="0">Без ограничений</option>
                             </select>
                             <span class="input-group-addon">МегаБайт</span>
