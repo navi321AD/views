@@ -174,11 +174,19 @@
                         <label for="pMemory">ОЗУ</label>
 
                         <div class="input-group">
-                            <input type="text" id="pMemory" name="memory" class="form-control" value="{{ old('memory') }}" />
+                            <select id="pMemory" name="memory" class="form-control">
+                                <option value="512">512 МБ</option>
+                                <option value="1024">1 ГБ</option>
+                                <option value="2048">2 ГБ</option>
+                                <option value="4096">4 ГБ</option>
+                                <option value="8192">8 ГБ</option>
+                                <option value="16384">16 ГБ</option>
+                                <option value="0">Без ограничений</option>
+                            </select>
                             <span class="input-group-addon">МегаБайт</span>
                         </div>
 
-                        <p class="text-muted small">Максимальный объем памяти, разрешенный для этого контейнера. Установка этого значения в <code>0 </code> позволит использовать неограниченное количество памяти в контейнере.</p>
+                        <p class="text-muted small">Максимальный объем памяти, разрешенный для этого контейнера. Установка этого значения в <code>0</code> позволит использовать неограниченное количество памяти в контейнере.</p>
                     </div>
 
                     <div class="form-group col-xs-6">
