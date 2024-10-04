@@ -151,17 +151,9 @@
                         <label for="pCPU">Лимит ЦПУ</label>
 
                         <div class="input-group">
-                            <select id="pCPU" name="cpu" class="form-control">
-                                <option value="0">Без ограничений</option>
-                                <option value="10">10%</option>
-                                <option value="20">20%</option>
-                                <option value="30">30%</option>
-                                <option value="40">40%</option>
+                        <input list="cpuOptions" id="pCPU" name="cpu" class="form-control" value="{{ old('cpu', 0) }}" />
+                            <datalist id="cpuOptions">
                                 <option value="50">50%</option>
-                                <option value="60">60%</option>
-                                <option value="70">70%</option>
-                                <option value="80">80%</option>
-                                <option value="90">90%</option>
                                 <option value="100">100%</option>
                                 <option value="200">200%</option>
                                 <option value="300">300%</option>
@@ -172,9 +164,10 @@
                                 <option value="800">800%</option>
                                 <option value="900">900%</option>
                                 <option value="1000">1000%</option>
-                            </select>
-                            <span class="input-group-addon">%</span>
-                        </div>
+                                <option value="0">Без ограничений</option>
+                            </datalist>
+                                <span class="input-group-addon">%</span>
+                            </div>
 
                         <p class="text-muted small">Если вы не хотите ограничивать загрузку процессора, установите значение <code>0</code>. Чтобы определить значение, возьмите количество потоков и умножьте его на 100. Например, в четырехъядерной системе без гиперпоточности <code>(6 * 100 = 600)</code> доступно <code>600%</code>. Чтобы ограничить использование сервером половины одного потока, вы должны установить значение <code>50</code>. Чтобы разрешить серверу использовать до двух потоков, установите значение <code>200</code>.<p>
                     </div>
@@ -195,7 +188,8 @@
                         <label for="pMemory">ОЗУ</label>
 
                         <div class="input-group">
-                            <select id="pMemory" name="memory" class="form-control">
+                        <input list="memoryOptions" id="pMemory" name="memory" class="form-control" value="{{ old('memory') }}" />
+                            <datalist id="memoryOptions">
                                 <option value="512">512 МБ</option>
                                 <option value="1024">1 ГБ</option>
                                 <option value="2048">2 ГБ</option>
@@ -213,9 +207,8 @@
                                 <option value="14336">14 ГБ</option>
                                 <option value="15360">15 ГБ</option>
                                 <option value="16384">16 ГБ</option>
-                                
                                 <option value="0">Без ограничений</option>
-                            </select>
+                            </datalist>
                             <span class="input-group-addon">МегаБайт</span>
                         </div>
 
